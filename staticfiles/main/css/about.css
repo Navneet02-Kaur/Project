@@ -1,0 +1,225 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "K2D", serif;
+}
+
+html{
+    background-color: rgb(255, 255, 255);
+}
+
+/* .header {
+    background-color: rgba(255, 255, 255, 0.096);
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 13vh;
+    position: relative;
+} */
+
+
+.header h1 {
+    color: rgb(5, 31, 0);
+    text-align: center;
+    font-size: 4rem;
+}
+
+#back img{
+    position: absolute;
+    padding: 20px 20px;
+    position:fixed;
+}
+
+.story {
+    display: flex;
+    height: 100vh;
+}
+
+#left, #right {
+    flex: 1;
+    padding: 20px;
+}
+
+#left #s-img{
+    height: 100%;
+    width: 100%;
+}
+
+#left #s-img img {
+    height: 100%;
+    width: 100%;    
+}
+
+
+#right {
+    background: url();
+    color: rgb(0, 37, 11);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#right h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#right p {
+    font-size: 1rem;
+    line-height: 2;
+}
+
+/* vision styles */
+.vision {
+    display: flex;
+    height: 100vh;
+}
+
+#left, #right {
+    flex: 1;
+    padding: 20px;
+}
+
+#right #v-img{
+    height: 100%;
+    width: 100%;
+}
+
+#right #v-img img {
+    height: 100%;
+    width: 100%;    
+}
+
+
+#left {
+    color: rgb(17, 48, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#left h2 {
+    font-size:2.3rem;
+    margin-bottom: 10px;
+}
+
+#left p {
+    font-size: 1.3rem;
+    line-height: 2;
+}
+
+/* MISSION STYLES */
+.mission {
+    display: flex;
+    height: 100vh;
+}
+
+#left, #right {
+    flex: 1;
+    padding: 20px;
+}
+
+#left #m-img{
+    height: 100%;
+    width: 100%;
+}
+
+#left #m-img img {
+    height: 100%;
+    width: 100%;    
+}
+
+
+#right {
+    color: rgb(1, 36, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#right h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#right p {
+    font-size: 1.2rem;
+    line-height: 2;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1a1a1a;
+    color: rgb(170, 255, 170);
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.contact-info,
+.email-signup {
+    flex: 1;
+}
+
+.contact-info h3,
+.email-signup h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: rgb(178, 255, 168);
+}
+
+.contact-info p,
+.email-signup p {
+    font-size: 1rem;
+    color: rgb(181, 255, 181);
+}
+
+.contact-info a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.email-input {
+    padding: 10px;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: #333;
+    color: white;
+}
+
+.email-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.email-btn:hover {
+    background-color: rgb(10, 61, 0);
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    font-size: 1rem;
+    color: rgb(181, 255, 181);
+}
+
+.footer-bottom p {
+    margin: 0;
+}

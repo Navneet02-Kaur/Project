@@ -1,0 +1,218 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Connect</title>
+
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/toknowmore.css' %}">
+
+    <!-- External Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="{% static 'main/js/script.js' %}"></script>
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h2>Carbon Connect</h2>
+        <ul>
+            <li><a href="#welcome">Welcome</a></li>
+            <li><a href="#footprint">What is Carbon Footprint?</a></li>
+            <li><a href="#offsetting">What is Carbon Offsetting?</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#impact">The Impact</a></li>
+            <li><a href="#why">Why Offset Your Carbon Footprint?</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Back Button -->
+        <div id="back">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'main/images/arrow_back_ios_new_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg' %}" alt="Back">
+            </a>
+        </div>
+        <header>
+            <h1>Welcome to Carbon Connect</h1>
+            <p>Join the movement to offset your carbon footprint and create a sustainable future.</p>
+
+        </header>
+
+        <section id="welcome">
+            <h2>"The Earth Doesn’t Belong to Us. We Belong to the Earth." – Chief Seattle</h2>
+            <p>
+                In a world where every action we take leaves a mark on our planet, it's crucial to understand how
+                even the smallest choices can have lasting effects on the environment. As we move through our daily
+                lives—driving cars, using electricity, or buying goods—we contribute to the carbon emissions that
+                drive climate change. But there's hope: <b>we can reduce these emissions, and even offset them</b>,
+                by taking responsibility for our actions and investing in solutions that protect the Earth.
+                <br>
+                <br>
+                Welcome to <b>Carbon Connect</b>, where we help individuals and businesses understand and manage
+                their <b>carbon footprint, while providing simple ways to offset emissions and contribute to a
+                    sustainable future</b>
+            </p>
+        </section>
+
+        <!-- What is Carbon Footprint Section -->
+        <section id="footprint">
+            <h2>What is a Carbon Footprint?</h2>
+            <p>A carbon footprint is the total amount of greenhouse gases (GHGs) emitted into the atmosphere due to
+                human activities. It's a measure of how much carbon dioxide (CO₂) and other gases are released from
+                things like driving, energy use, food production, and manufacturing.
+<br>
+<br>
+                In simpler terms, it’s the environmental impact of everything you do, from the electricity you use
+                to the food you eat. Your carbon footprint is typically measured in tons of CO₂-equivalent (CO₂e),
+                which helps quantify the contribution of various gases that affect global warming.
+                <br>
+<br>
+               <b>Key Contributors to Your Carbon Footprint:</b> 
+               <br>
+               <br>
+               <b>- Transportation:</b>  Driving cars, flying, and shipping goods.
+               <br>
+               <br>
+
+               <b>- Energy Use:</b>  Heating, cooling, and powering your home or office.
+               <br>
+               <br>
+               <b>- Food Consumption:</b>  Agriculture, livestock farming, and food transportation.
+<br>
+<br>
+               <b> - Goods and Services:</b> Manufacturing, packaging, and product disposal.
+<br>
+<br>
+                Every action you take—whether it's turning on a light, buying a product, or traveling—produces
+                emissions that impact the planet. The bigger your carbon footprint, the greater your effect on
+                climate change.
+
+            </p>
+        </section>
+
+        <!-- What is Carbon Offsetting Section -->
+        <section id="offsetting">
+            <h2>What is Carbon Offsetting?</h2>
+            <p><b>Carbon offsetting</b> is a way of compensating for the carbon emissions you produce by funding projects
+                that reduce or remove greenhouse gases from the atmosphere. It’s like a personal or business
+                commitment to neutralize the impact of your actions on the planet.
+<br>
+<br>
+                When you purchase a carbon offset, you're essentially investing in projects that help absorb CO₂,
+                prevent future emissions, or reduce emissions elsewhere. These projects could include anything from
+                planting trees to supporting renewable energy sources.
+<br>
+<br>
+
+                In essence, <b>carbon offsetting gives you the chance to balance out your emissions by supporting
+                    efforts that make the world greener.</b>
+
+            </p>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works">
+            <h2>How It Works</h2>
+            <p>Offsetting your carbon footprint is simple and effective. Here’s how it works:
+<br>
+<br>
+
+               <b>1.Calculate Your Carbon Footprint:</b>  The first step is understanding how much carbon you’re
+                responsible for. You can use carbon calculators to estimate your emissions based on your daily
+                activities, such as how much you travel, how much energy you use, and what you consume.
+<br>
+<br>
+
+                <b>2. Choose a Verified Offset Project:</b> Once you know your footprint, you can purchase carbon offsets
+                from certified projects. These projects have been verified to reduce or capture an equivalent amount
+                of CO₂ emissions. They could include renewable energy initiatives, reforestation, or methane capture
+                programs.
+<br>
+<br>
+                <b>3. Offset Your Emissions:</b> By purchasing offsets, you help fund these environmental projects and
+                effectively <b>neutralize</b> your carbon emissions. You’ll receive certification or proof of the
+                project your money supports.
+<br>
+<br>
+
+                <b>4. Track and Measure: </b>Many carbon offset platforms provide a tracking number or certificate so you
+                can verify the effectiveness of the project and ensure your money is going to impactful initiatives.
+
+
+        </section>
+
+        <!-- The Impact Section -->
+        <section id="impact">
+            <h2>The Impact of Carbon Offsetting</h2>
+            <p>Carbon offsetting is one of the most effective tools for fighting climate change and promoting
+                sustainability. Here’s how it helps:
+
+                <b>1. Reduces Carbon Emissions</b>
+                The most direct impact of carbon offsetting is the reduction of greenhouse gases. Projects funded by
+                offsets are specifically designed to <b>lower emissions</b> and <b>capture carbon from the atmosphere,</b>
+                helping slow the progress of climate change.
+<br>
+<br>
+                <b>2. Supports Renewable Energy and Sustainability</b>
+                Offsetting investments often go toward renewable energy projects like solar, wind, and hydroelectric
+                power. These projects not only replace fossil fuels but also encourage innovation and the transition
+                to a low-carbon economy.
+<br>
+<br>
+
+                <b>3. Protects and Restores Ecosystems</b>
+                Many carbon offset projects focus on <b>reforestation and afforestation</b>, planting trees or restoring
+                forests that naturally absorb CO₂. Forests act as carbon sinks, absorbing more carbon than they
+                emit, which helps reduce the overall concentration of greenhouse gases in the atmosphere.
+                <br>
+                <br>
+                <b>4. Creates Local Benefits</b>
+                Offsetting projects often have positive side effects on local communities. They can create jobs,
+                improve infrastructure, and support sustainable farming practices. For example, <b>renewable energy
+                    projects can provide clean energy to underserved areas, improving quality of life and reducing local
+                    pollution.</b>
+<br>
+<br>
+                <b>5. Encourages Corporate and Personal Responsibility</b>
+                The availability of carbon offsets encourages individuals and businesses to be more environmentally
+                conscious. Companies, in particular, are increasingly turning to carbon offsets as part of their
+                efforts to meet net-zero emissions targets and demonstrate commitment to sustainability.</p>
+        </section>
+
+        <section id="why">
+            <h2>Why Offset Your Carbon Footprint?</h2>
+            <p>
+                While reducing your carbon footprint by changing everyday behaviors (like driving less or eating
+                plant-based food) is essential, it's nearly impossible to eliminate all emissions entirely. Carbon
+                offsetting is a powerful tool that allows you to take responsibility for the emissions you can't
+                reduce, ensuring that your actions have a net-neutral or even positive impact on the planet.
+
+                By supporting carbon offset projects, you're not just reducing your emissions—you’re actively
+                contributing to a healthier, more sustainable world. Your choice to offset can help mitigate climate
+                change, preserve ecosystems, and make a real difference in the fight against global warming.
+
+            </p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Carbon Connect | All Rights Reserved</p>
+        </footer>
+    </div>
+
+</body>
+</html>

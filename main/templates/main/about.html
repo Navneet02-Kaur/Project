@@ -1,0 +1,101 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+<script src="{% static 'main/js/script.js' %}"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+        
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="back">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'main/images/arrow_back_ios_new_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg' %}" alt="Back">
+          </a>
+          
+    </div>
+    <section class="head">
+        <div class="header">
+            <h1>ABOUT US</h1>
+            <hr>
+
+           
+        </div>
+
+        
+    </section>
+
+    <div class="story">
+        <div id="left">
+            <div id="s-img">
+                <img src="{% static 'main/images/story.png' %}" alt="My Image">
+            </div>
+        </div>
+        <div id="right">
+            <h2>OUR STORY</h2>
+            <p>There is an increasing awareness of the urgent need to address climate change and control carbon emissions. As the world grapples with the impacts of rising temperatures, deforestation, and pollution, the focus on carbon control has never been more critical. Carbon Connect was created to respond to this need, offering a platform where individuals, businesses, and communities can take real, tangible steps to protect the environment.
+
+                Through our platform, users can access a variety of tools and resources designed to help them reduce their carbon footprints. From tracking emissions to discovering actionable steps for sustainable living, Carbon Connect empowers people to make informed choices. Additionally, we provide carbon offsetting options to balance out emissions that can't be eliminated, supporting projects that help restore ecosystems, reduce pollution, and promote renewable energy.
+                
+                By offering accessible, practical solutions, Carbon Connect is helping to shape a more sustainable future for everyone.</p>
+        </div>
+    </div>
+
+    <div class="vision">
+        <div id="left">
+            <h2>OUR VISION</h2>
+            <P>Our vision is to build a world where carbon neutrality is the norm, not the exception. We envision a future where businesses, governments, and individuals take full responsibility for their environmental impact, making carbon offsetting a seamless part of everyday life. Through collaboration and innovation, we aim to accelerate the transition to a low-carbon economy, where the health of the planet and its inhabitants are prioritized.
+                We strive for a future where Carbon Connect leads the way in creating scalable, effective solutions that make a measurable difference in mitigating climate change, creating new green jobs, and helping communities adapt to the challenges posed by a changing climate</P>
+        </div>
+        <div id="right">
+            <div id="v-img">
+                <img src="{% static 'main/images/vision.jpg' %}" alt="My Image">
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="mission">
+        <div id="left">
+            <div id="m-img">
+                <img src="{% static 'main/images/main2.jpg' %}" alt="My Image">
+            </div>
+        </div>
+        <div id="right">
+            <h2>OUR MISSION</h2>
+            <p>The mission of Carbon Connect is to empower individuals, businesses, and communities to understand, reduce, and offset their carbon footprints. Through education, innovative solutions, and strategic partnerships, Carbon Connect aims to drive sustainable change by enabling practical climate action. Our goal is to make carbon neutrality accessible to all, fostering a global movement towards a cleaner, healthier planet for future generations.</p>
+        </div>
+    </div>
+
+
+      <!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="contact-info">
+            <h3>Contact Us</h3>
+            <p>Email: <a href="mailto:contact@carbonoffset.com">contact@carbonoffset.com</a></p>
+            <p>Location: Carbon Offset Initiative, 123 Green Road, Eco City</p>
+        </div>
+        <div class="email-signup">
+            <h3>Stay Informed</h3>
+            <input type="email" placeholder="Enter your email" class="email-input">
+            <button class="email-btn">Subscribe</button>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Carbon Offset Initiative. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
