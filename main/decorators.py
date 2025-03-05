@@ -4,8 +4,8 @@ from django.contrib import messages
 
 def login_required(view_func):
     def wrapper(request, *args, **kwargs):
-        if 'user_id' not in request.session or request.session['role'] != 'organization':
-            messages.error(request, 'Only Organizations Can List Projects! Please log in.')
-            return redirect('login')
+        if 'user_id' not in request.session:
+            messages.error(request, 'Please log in to access this page.')
+            return redirect(f"{request.path}?next={request.path}")
         return view_func(request, *args, **kwargs)
     return wrapper

@@ -22,12 +22,57 @@
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'list_project' %}">List Projects</a></li>
-            <li><a href="{% url 'contribute' %}">Contribute</a></li>
+            <li><a href="{% url 'contribution' %}">Contribute</a></li>
             <li><a href="{% url 'marketplace' %}">Marketplace</a></li>
         </ul>
     </nav>
 
-    <h1>Main offset page content</h1>
+    <section class="content">
+        <h2>What is Carbon Offsetting?</h2>
+        <p>Carbon offsetting is a process where individuals, businesses, or organizations take responsibility for the carbon emissions they produce by supporting environmental projects that reduce greenhouse gases. <b>These projects help to remove or prevent the same amount of carbon emissions from the atmosphere that was produced through daily activities or business operations.</b> 
+<br>
+<br>
+            It works on the principle of <b>balancing the scales</b>  — if you produce a certain amount of carbon emissions, you can fund projects that reduce or capture the same amount of carbon, making your activities carbon neutral.
+            
+           <b>Offsetting projects can include:</b> 
+            
+           - Planting trees to absorb carbon dioxide from the air. <br>
+          -  Developing renewable energy projects like solar or wind power to replace fossil fuels. <br>
+          -  Waste management projects that reduce methane emissions from landfills. <br>
+           - Providing clean cooking stoves to communities to avoid burning wood or coal. <br>
+            -Carbon offsetting is one of the most practical ways to take action against climate change while continuing necessary activities.
+            
+            </p>
+
+        <h2>How It Works?</h2>
+        <p> <b>Carbon offsetting is a straightforward process that follows these steps:</b>
+<br>
+<br>
+           <b>Calculate Carbon Emissions:</b> 
+            Individuals or companies first calculate the amount of carbon emissions they produce through activities like transportation, electricity usage, or manufacturing. This helps to understand their environmental impact.
+            <br>
+            <b>Select an Offset Project:</b>
+            After calculating emissions, the next step is to choose from verified offset projects. These projects focus on reducing emissions or capturing carbon through different methods like tree planting, renewable energy, or clean water supply.
+            <br>
+           <b>Contribute to the Project:</b> 
+            A contribution is made to the selected project based on the amount of carbon emissions produced. The funds help the project grow and achieve its environmental goals.
+            <br>
+            <b>Track and Verify Impact:</b>
+            Many offset projects provide certificates or updates on how the contribution has helped in reducing emissions. This ensures that the impact is measurable and transparent.
+            
+            </p>
+
+        <div class="buttons">
+            <a href="{% url 'list_project' %}" class="btn">List Your Project</a>
+            <a href="{% url 'contribution' %}" class="btn">Contribute Now</a>
+        </div>
+    </section>
+
+    <div class="carousel">
+        <img src="{% static 'main/images/offset1.jpg' %}" alt="Project Image">
+        <img src="{% static 'main/images/offset2.jpg' %}" alt="Project Image">
+        <img src="{% static 'main/images/offset3.jpg' %}" alt="Project Image">
+    </div>
 
 </body>
 </html>

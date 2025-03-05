@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "K2D", serif;
+}
+
+html {
+    background-color: #ffffff;
+    scroll-behavior: smooth;
+font-family: "K2D", serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+}
+
+.form-container {
+    margin: 60px auto;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    max-width: 650px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+h2 {
+    color: #333;
+    font-weight: bold;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.form-control, .form-select {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+}
+
+.btn-primary {
+    background-color: #28a745;
+    border: none;
+    padding: 12px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+    transform: scale(1.03);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

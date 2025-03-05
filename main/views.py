@@ -3,7 +3,7 @@ from .decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from .models import Users, OffsetProject  # Ensure OffsetProject is imported
+from .models import Users, OffsetProject, Contribution  # Ensure Contribution is imported
 from .forms import UserForm
 from django.contrib import messages
 
@@ -67,7 +67,7 @@ def logout_user(request):
 def toknowmore(request):
     return render(request, 'main/toknowmore.html')
 
-@login_required
+
 def offset(request):
     return render(request, 'main/offset.html')
 
@@ -187,7 +187,7 @@ def list_project(request):
 
 
 def contribute(request):
-    return render(request, 'main/offset.html')
+    return render(request, 'main/contribution.html')
 
 
 def marketplace(request):
@@ -197,3 +197,23 @@ def marketplace(request):
 def my_projects(request):
     return render(request, 'main/my_projects.html')
 
+def contribution(request):
+    projects = OffsetProject.objects.all()
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        project = OffsetProject.objects.get(id=request.POST['project'])
+        amount = request.POST['amount']
+        payment = request.POST['payment']
+
+        Contribution.objects.create(
+            name=name,
+            email=email,
+            project=project,
+            amount=amount,
+            payment=payment
+        )
+        messages.success(request, "Thank you for your contribution!")
+        return redirect('marketplace')
+
+    return render(request, 'main/contribution.html', {'projects': projects})

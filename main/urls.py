@@ -12,7 +12,8 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('logout/', views.logout_user, name='logout'),
     path('list_project/', views.list_project, name='list_project'),
-    path('contribute/', views.contribute, name='contribute'),
+    path('contribution/', views.contribution, name='contribution'),
     path('marketplace/', views.marketplace, name='marketplace'),
     path('my_projects/', views.my_projects, name='my_projects'),
+   
 ]
