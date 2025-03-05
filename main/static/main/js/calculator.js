@@ -17,6 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.carbon_emission) {
+                    if (data.remark) {
+                        let remarkElement = document.createElement("p");
+                        remarkElement.innerText = data.remark;
+                        remarkElement.classList.add("remark");
+                        document.querySelector(".results-section").appendChild(remarkElement);
+                    }
+                    
                     console.log("Received Data:", data); // Debugging - See what Django is sending
 
                     document.getElementById("totalCarbon").innerText = data.carbon_emission.toFixed(2) + " tonnes CO2e";

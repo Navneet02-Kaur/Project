@@ -190,3 +190,14 @@ input[type="radio"] {
     margin-top: 0.25rem;
 }
 
+.remark {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    color: white;
+    background-color: #5A9; /* Green Shade */
+    text-align: center;
+    border-radius: 10px;
+}
+
