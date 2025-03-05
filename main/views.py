@@ -17,6 +17,7 @@ def about(request):
     return render(request, 'main/about.html')
 
 def login_page(request):
+    next_url = request.GET.get('next', 'index')
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -27,15 +28,12 @@ def login_page(request):
             messages.success(request, 'Login Successful!')
             logger.info(f'User {email} logged in successfully.')
 
-            if user.role == 'individual':
-                return redirect('index')  # Home Page for Individuals
-            elif user.role == 'organization':
-                return redirect('index')  # Home Page for Organizations (Dashboard will be added later)
+            return redirect(next_url)
         except Users.DoesNotExist:
             messages.error(request, 'Invalid Email or Password')
             logger.warning(f'Failed login attempt for email: {email}')
 
-    return render(request, 'main/login.html')
+    return render(request, 'main/login.html', {'next': next_url})
 
 
 def signup(request):
@@ -68,6 +66,7 @@ def toknowmore(request):
     return render(request, 'main/toknowmore.html')
 
 
+@login_required
 def offset(request):
     return render(request, 'main/offset.html')
 
@@ -163,7 +162,7 @@ def list_project(request):
         project_name = request.POST.get('project_name')
         description = request.POST.get('description')
         category = request.POST.get('category')
-        location = request.POST.get('location')
+        location = request.POST.get('location') 
         amount = request.POST.get('amount')
         duration = request.POST.get('duration')
         contact_email = request.POST.get('contact_email')
@@ -187,12 +186,28 @@ def list_project(request):
 
 
 def contribute(request):
-    return render(request, 'main/contribution.html')
+    projects = OffsetProject.objects.all()
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        project = OffsetProject.objects.get(id=request.POST['project'])
+        amount = request.POST['amount']
+        payment = request.POST['payment']
 
+        Contribution.objects.create(
+            name=name,
+            email=email,
+            project=project,
+            amount=amount,
+            payment=payment
+        )
+        messages.success(request, "Thank you for your contribution!")
+        return redirect('marketplace')
+
+    return render(request, 'main/contribution.html', {'projects': projects})
 
 def marketplace(request):
     return render(request, 'main/marketplace.html')
-
 
 def my_projects(request):
     return render(request, 'main/my_projects.html')
