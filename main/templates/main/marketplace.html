@@ -13,6 +13,16 @@
         rel="stylesheet">
 </head>
 <body>
+
+  <form method="GET">
+    <select name="category" onchange="this.form.submit()">
+        <option value="">All Categories</option>
+        {% for value, name in CATEGORY_CHOICES %}
+        <option value="{{ value }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+</form>
+
 <div class="container py-5">
   <h2 class="text-center mb-4">Offset Marketplace 🌍</h2>
   <div class="row">

@@ -14,8 +14,15 @@ class Users(models.Model):
 class OffsetProject(models.Model):
     CATEGORY_CHOICES = [
         ('Tree Plantation', 'Tree Plantation'),
-        ('Solar Energy', 'Solar Energy'),
-        ('Waste Management', 'Waste Management')
+        ('Waste Management', 'Waste Management'),
+        ('Solar Management', 'Solar Management'),
+        ('Rainwater Harvesting', 'Rainwater Harvesting'),
+        ('Biogas Projects', 'Biogas Projects'),
+        ('E-Waste Recycling', 'E-Waste Recycling'),
+        ('Plastic Waste Reduction', 'Plastic Waste Reduction'),
+        ('Afforestation Projects', 'Afforestation Projects'),
+        ('Community Solar Projects', 'Community Solar Projects'),
+        ('Eco Brick Projects', 'Eco Brick Projects'),
     ]
     project_name = models.CharField(max_length=200)
     description = models.TextField()

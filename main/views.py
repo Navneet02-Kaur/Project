@@ -132,30 +132,32 @@ def calculator(request):
                 energy_emission + transport_emission + waste_emission +
                 food_emission + water_emission + goods_emission +
                 renewable_emission + lifestyle_emission
-            ) / 1000  # Convert to tons if needed
+            ) / 1000
 
             if total_emission <= 2:
-                remark = "Excellent 🌿 - You are an Eco Hero!"
-            elif 2 < total_emission <= 8:
-                remark = "Good 😊 - But still, you can reduce your footprint!"
-            elif 8 < total_emission <= 15:
-                remark = "Moderate ⚠️ - Try to adopt greener habits!"
+                 remark = "Excellent 🌿 - You are an Eco Hero!"
+            elif 2 < total_emission / 1000 <= 4:
+                 remark = "Good 😊 - But still, you can reduce your footprint!"
+            elif 4 < total_emission / 1000 <= 6:
+                 remark = "Moderate ⚠️ - Try to adopt greener habits!"
             else:
                 remark = "Very High 🔥 - Immediate action needed! Plant trees, Save Energy, Go Solar!"
 
+
             # Return JSON response
             return JsonResponse({
-                "carbon_emission": round(total_emission, 2),
-                "energy": energy_emission,
-                "transport": transport_emission,
-                "waste": waste_emission,
-                "food": food_emission,
-                "water": water_emission,
-                "goods": goods_emission,
-                "renewable": renewable_emission,
-                "lifestyle": lifestyle_emission,
-                "remark": remark  # 👈 This will return the remark
-            })
+                 "carbon_emission": round(total_emission, 2),
+                 "energy": energy_emission,
+                 "transport": transport_emission,
+                 "waste": waste_emission,
+                 "food": food_emission,
+                 "water": water_emission,
+                 "goods": goods_emission,
+                 "renewable": renewable_emission,
+                 "lifestyle": lifestyle_emission,
+                 "remark": remark  # 👈 This will return the remark
+                 })
+
 
         except Exception as e:
             print("Error:", e)  # Print error in terminal
@@ -168,6 +170,7 @@ def offset_projects(request):
 
 @login_required
 def list_project(request):
+    categories = OffsetProject.CATEGORY_CHOICES  # ✅ Fetch  project choices here
     print("Session Data:", request.session.items())  # Debug Statement ✅
     
     if request.method == 'POST':
@@ -193,8 +196,8 @@ def list_project(request):
             return redirect('my_projects')
         else:
             messages.error(request, 'Please fill all fields!')
-    
-    return render(request, 'main/list_project.html')
+    return render(request, 'main/list_project.html', {'categories': categories}) 
+  
 
 @login_required
 def contribute(request):
@@ -246,5 +249,10 @@ def contribution(request):
     return render(request, 'main/contribution.html', {'projects': projects})
 
 def marketplace(request):
-    projects = OffsetProject.objects.all()
+    
+    category = request.GET.get('category')
+    if category:
+        projects = OffsetProject.objects.filter(category=category)
+    else:
+        projects = OffsetProject.objects.all()
     return render(request, 'main/marketplace.html', {'projects': projects})
