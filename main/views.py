@@ -17,7 +17,7 @@ def about(request):
     return render(request, 'main/about.html')
 
 def login_page(request):
-    next_url = request.GET.get('next', 'index')
+    next_url = request.GET.get('next','')
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -28,13 +28,16 @@ def login_page(request):
             messages.success(request, 'Login Successful!')
             logger.info(f'User {email} logged in successfully.')
 
-            return redirect(next_url)
+            if next_url:
+                return redirect(next_url)  
+            else:
+                return redirect('index') 
+            
         except Users.DoesNotExist:
             messages.error(request, 'Invalid Email or Password')
             logger.warning(f'Failed login attempt for email: {email}')
 
     return render(request, 'main/login.html', {'next': next_url})
-
 
 def signup(request):
     if request.method == 'POST':
@@ -66,7 +69,6 @@ def toknowmore(request):
     return render(request, 'main/toknowmore.html')
 
 
-@login_required
 def offset(request):
     return render(request, 'main/offset.html')
 
@@ -98,6 +100,7 @@ def user_update(request, id):
         form = UserForm(instance=user)
     return render(request, 'main/user_form.html', {'form': form})
 
+@login_required
 def calculator(request):
     if request.method == "GET":
         return render(request, 'main/calculator.html')  # Correct template path
@@ -165,7 +168,6 @@ def calculator(request):
 def offset_projects(request):
     return render(request, 'main/offset.html')
 
-
 @login_required
 def list_project(request):
     print("Session Data:", request.session.items())  # Debug Statement ✅
@@ -174,7 +176,7 @@ def list_project(request):
         project_name = request.POST.get('project_name')
         description = request.POST.get('description')
         category = request.POST.get('category')
-        location = request.POST.get('location') 
+        location = request.POST.get('location')
         amount = request.POST.get('amount')
         duration = request.POST.get('duration')
         contact_email = request.POST.get('contact_email')
@@ -196,7 +198,7 @@ def list_project(request):
     
     return render(request, 'main/list_project.html')
 
-
+@login_required
 def contribute(request):
     projects = OffsetProject.objects.all()
     if request.method == "POST":
@@ -244,3 +246,7 @@ def contribution(request):
         return redirect('marketplace')
 
     return render(request, 'main/contribution.html', {'projects': projects})
+
+def marketplace(request):
+    projects = OffsetProject.objects.all()
+    return render(request, 'main/marketplace.html', {'projects': projects})

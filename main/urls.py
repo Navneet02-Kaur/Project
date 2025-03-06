@@ -15,5 +15,4 @@ urlpatterns = [
     path('contribution/', views.contribution, name='contribution'),
     path('marketplace/', views.marketplace, name='marketplace'),
     path('my_projects/', views.my_projects, name='my_projects'),
-   
 ]

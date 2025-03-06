@@ -15,6 +15,28 @@ body {
     background: #f4f9f4;
 }
 
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  .alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+
+#back img{
+    position: absolute;
+    padding: 20px 20px;
+    position:fixed;
+}
+
+
 /* Container for left and right sections */
 .container {
     display: flex;
