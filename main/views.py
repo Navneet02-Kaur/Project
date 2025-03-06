@@ -132,32 +132,30 @@ def calculator(request):
                 energy_emission + transport_emission + waste_emission +
                 food_emission + water_emission + goods_emission +
                 renewable_emission + lifestyle_emission
-            ) / 1000
+            ) / 1000  # Convert to tons if needed
 
             if total_emission <= 2:
-                 remark = "Excellent 🌿 - You are an Eco Hero!"
-            elif 2 < total_emission / 1000 <= 4:
-                 remark = "Good 😊 - But still, you can reduce your footprint!"
-            elif 4 < total_emission / 1000 <= 6:
-                 remark = "Moderate ⚠️ - Try to adopt greener habits!"
+                remark = "Excellent 🌿 - You are an Eco Hero!"
+            elif 2 < total_emission <= 8:
+                remark = "Good 😊 - But still, you can reduce your footprint!"
+            elif 8 < total_emission <= 15:
+                remark = "Moderate ⚠️ - Try to adopt greener habits!"
             else:
                 remark = "Very High 🔥 - Immediate action needed! Plant trees, Save Energy, Go Solar!"
 
-
             # Return JSON response
             return JsonResponse({
-                 "carbon_emission": round(total_emission, 2),
-                 "energy": energy_emission,
-                 "transport": transport_emission,
-                 "waste": waste_emission,
-                 "food": food_emission,
-                 "water": water_emission,
-                 "goods": goods_emission,
-                 "renewable": renewable_emission,
-                 "lifestyle": lifestyle_emission,
-                 "remark": remark  # 👈 This will return the remark
-                 })
-
+                "carbon_emission": round(total_emission, 2),
+                "energy": energy_emission,
+                "transport": transport_emission,
+                "waste": waste_emission,
+                "food": food_emission,
+                "water": water_emission,
+                "goods": goods_emission,
+                "renewable": renewable_emission,
+                "lifestyle": lifestyle_emission,
+                "remark": remark  # 👈 This will return the remark
+            })
 
         except Exception as e:
             print("Error:", e)  # Print error in terminal
