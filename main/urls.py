@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import logout_view
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -14,5 +15,5 @@ urlpatterns = [
     path('contribute/', views.contribute, name='contribution'),  # Fix name
     path('marketplace/', views.marketplace, name='marketplace'),
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('logout/', views.logout, name='logout'),  # Ensure this line is present
+    path('logout/', logout_view, name='logout'),  # Ensure this line is present
 ]

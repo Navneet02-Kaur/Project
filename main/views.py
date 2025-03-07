@@ -54,39 +54,40 @@ def signup(request):
 
     return render(request, 'main/login.html')
 
+
 @login_required
 def dashboard(request):
-    user_id = request.session.get('user_id')
-    role = request.session.get('role')
-    user = Users.objects.get(id=user_id)
+    user = request.user
+    
+    context = {}
 
-    projects = []  # Initialize projects as an empty list
+    if user.account_type == 'Individual':
+        contributions = Contribution.objects.filter(user=user)
+        total_amt_paid = contributions.aggregate(Sum('amount'))['amount__sum'] or 0
+        invested_projects = contributions.values_list('project__title', flat=True).distinct()
+        carbon_score = total_amt_paid // 100  # Simple logic (100 Rs = 1 Carbon Score)
 
-    context = {
-        'user_email': user.email,
-        'user_type': role
-    }
-
-    if role == 'individual':
-        contributions = Contribution.objects.filter(email=user.email)
-        total_contribution = sum(c.amount for c in contributions)
-        context['total_contribution'] = total_contribution
-        carbon_score = sum(c.amount for c in contributions) // 100
         context['carbon_score'] = carbon_score
-        context['contributions'] = contributions
+        context['total_amt_paid'] = total_amt_paid
+        context['invested_in'] = invested_projects
+        context['account_type'] = 'Individual'
+
+    elif user.account_type == 'Organization':
+        projects = ListProject.objects.filter(user=user)
+        total_projects = projects.count()
+        total_contribution = Contribution.objects.filter(project__in=projects).aggregate(Sum('amount'))['amount__sum'] or 0
+
+        context['total_projects'] = total_projects
         context['total_contribution'] = total_contribution
+        context['projects_listed'] = projects
+        context['account_type'] = 'Organization'
 
-    elif role == 'organization':
-        projects = OffsetProject.objects.filter(contact_email=user.email)
-        context['projects'] = projects
-        context['total_projects'] = len(projects)
+    return render(request, 'dashboard.html', context)
 
-    return render(request, 'main/dashboard.html', context)
 
 def logout_view(request):
-    request.session.flush()  # Clear All Session Data
-    messages.success(request, "Logged out successfully!")
-    return redirect('login')
+    logout(request)  # Logs out the user
+    return redirect('/')  # Redirect to homepage or any URL after logout
 
 
 

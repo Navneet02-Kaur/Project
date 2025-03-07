@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 class Users(models.Model):
     id = models.AutoField(primary_key=True)
@@ -10,6 +11,20 @@ class Users(models.Model):
 
     class Meta:
         db_table = 'main_users'
+
+
+
+
+class MainUser(AbstractUser):
+    ACCOUNT_TYPES = [
+        ('Individual', 'Individual'),
+        ('Organization', 'Organization'),
+    ]
+    account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPES, default='Individual')
+
+    def __str__(self):
+        return self.username
+
 
 class OffsetProject(models.Model):
     CATEGORY_CHOICES = [
