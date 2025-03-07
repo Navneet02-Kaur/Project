@@ -7,6 +7,7 @@ from .models import Users, OffsetProject, Contribution
 from .forms import UserForm
 from django.contrib import messages
 from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -53,27 +54,22 @@ def signup(request):
             messages.error(request, 'Email Already Exists')
             return redirect('signup')
 
-    return render(request, 'main/login.html')
-
+    return render(request, 'main/signup.html')
 
 @login_required
 def dashboard(request):
     user = request.user
-    user_type = user.account_type
+    user_type = user.role
     
     context = {
         'user_email': user.email,
         'user_type': user_type,
-        'contributions': contributions,
-        'total_contribution': total_contribution,
-        'carbon_score': carbon_score,
-        'projects': projects
     }
 
-    if user.account_type == 'Individual':
-        contributions = Contribution.objects.filter(user=user)
+    if user.role == 'individual':
+        contributions = Contribution.objects.filter(email=user.email)
         total_amt_paid = contributions.aggregate(Sum('amount'))['amount__sum'] or 0
-        invested_projects = contributions.values_list('project__title', flat=True).distinct()
+        invested_projects = contributions.values_list('project__project_name', flat=True).distinct()
         carbon_score = total_amt_paid // 100  # Simple logic (100 Rs = 1 Carbon Score)
 
         context['carbon_score'] = carbon_score
@@ -81,8 +77,8 @@ def dashboard(request):
         context['invested_in'] = invested_projects
         context['account_type'] = 'Individual'
 
-    elif user.account_type == 'Organization':
-        projects = OffsetProject.objects.filter(user=user)
+    elif user.role == 'organization':
+        projects = OffsetProject.objects.filter(contact_email=user.email)
         total_projects = projects.count()
         total_contribution = Contribution.objects.filter(project__in=projects).aggregate(Sum('amount'))['amount__sum'] or 0
 
@@ -91,18 +87,14 @@ def dashboard(request):
         context['projects_listed'] = projects
         context['account_type'] = 'Organization'
 
-    return render(request, 'dashboard.html', context)
-
+    return render(request, 'main/dashboard.html', context)
 
 def logout_view(request):
     logout(request)  # Logs out the user
     return redirect('/')  # Redirect to homepage or any URL after logout
 
-
-
 def toknowmore(request):
     return render(request, 'main/toknowmore.html')
-
 
 def offset(request):
     return render(request, 'main/offset.html')

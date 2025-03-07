@@ -2,22 +2,17 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class Users(AbstractUser):
-    role = models.CharField(max_length=20, choices=[('individual', 'Individual'), ('organization', 'Organization')])
+    ROLE_CHOICES = [
+        ('individual', 'Individual'),
+        ('organization', 'Organization'),
+    ]
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='individual')
 
     class Meta:
         db_table = 'main_users'
 
-
-class MainUser(AbstractUser):
-    ACCOUNT_TYPES = [
-        ('Individual', 'Individual'),
-        ('Organization', 'Organization'),
-    ]
-    account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPES, default='Individual')
-
     def __str__(self):
-        return self.username
-
+        return self.email
 
 class OffsetProject(models.Model):
     CATEGORY_CHOICES = [
@@ -35,7 +30,7 @@ class OffsetProject(models.Model):
     project_name = models.CharField(max_length=200)
     description = models.TextField()
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, default='Tree Plantation')
-    location = models.CharField(max_length=200, default='Unknown')  # Ensure location field is defined
+    location = models.CharField(max_length=200, default='Unknown')
     target_amount = models.IntegerField()
     duration = models.IntegerField(null=True, blank=True)
     contact_email = models.EmailField()
