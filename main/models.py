@@ -1,18 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class Users(models.Model):
-    id = models.AutoField(primary_key=True)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
+class Users(AbstractUser):
     role = models.CharField(max_length=20, choices=[('individual', 'Individual'), ('organization', 'Organization')])
-    created_dt = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'main_users'
-
-
 
 
 class MainUser(AbstractUser):

@@ -23,20 +23,30 @@
         <p>Account Type: {{ user_type }}</p>
     </div>
 
-    <!-- Grid Layout -->
     <div class="grid-container">
+        {% if user_type == 'Individual' %}
         <div class="card">
             <h3>Carbon Score</h3>
             <p id="carbonScore">{{ carbon_score }} Points</p>
-
         </div>
         <div class="card">
             <h3>Total Contribution</h3>
             <p id="totalContribution">₹ {{ total_contribution }}</p>
-
         </div>
+        {% endif %}
+    
+        {% if user_type == 'Organization' %}
+        <div class="card">
+            <h3>Total Projects Listed</h3>
+            <p>{{ projects|length }} Projects</p>
+        </div>
+        <div class="card">
+            <h3>Total Fund Raised</h3>
+            <p>₹ {{ total_contribution }}</p>
+        </div>
+        {% endif %}
     </div>
-
+    
     <!-- History Section -->
     <div class="history-section">
         <h3>Your Contribution History</h3>

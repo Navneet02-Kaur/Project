@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from .models import Users, OffsetProject, Contribution  
 from .forms import UserForm
 from django.contrib import messages
+from django.db.models import Sum
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -58,8 +59,16 @@ def signup(request):
 @login_required
 def dashboard(request):
     user = request.user
+    user_type = user.account_type
     
-    context = {}
+    context = {
+        'user_email': user.email,
+        'user_type': user_type,
+        'contributions': contributions,
+        'total_contribution': total_contribution,
+        'carbon_score': carbon_score,
+        'projects': projects
+    }
 
     if user.account_type == 'Individual':
         contributions = Contribution.objects.filter(user=user)
@@ -73,7 +82,7 @@ def dashboard(request):
         context['account_type'] = 'Individual'
 
     elif user.account_type == 'Organization':
-        projects = ListProject.objects.filter(user=user)
+        projects = OffsetProject.objects.filter(user=user)
         total_projects = projects.count()
         total_contribution = Contribution.objects.filter(project__in=projects).aggregate(Sum('amount'))['amount__sum'] or 0
 
