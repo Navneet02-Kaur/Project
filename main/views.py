@@ -3,7 +3,7 @@ from .decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from .models import Users, OffsetProject, Contribution  # Ensure Contribution is imported
+from .models import Users, OffsetProject, Contribution  
 from .forms import UserForm
 from django.contrib import messages
 
@@ -17,7 +17,10 @@ def about(request):
     return render(request, 'main/about.html')
 
 def login_page(request):
-    next_url = request.GET.get('next','')
+    if 'user_id' in request.session:
+        return redirect('dashboard')  # Redirect to dashboard if already logged in
+
+    next_url = request.GET.get('next', 'index')
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -28,11 +31,7 @@ def login_page(request):
             messages.success(request, 'Login Successful!')
             logger.info(f'User {email} logged in successfully.')
 
-            if next_url:
-                return redirect(next_url)  
-            else:
-                return redirect('index') 
-            
+            return redirect(next_url)
         except Users.DoesNotExist:
             messages.error(request, 'Invalid Email or Password')
             logger.warning(f'Failed login attempt for email: {email}')
@@ -55,15 +54,41 @@ def signup(request):
 
     return render(request, 'main/login.html')
 
-def logout_user(request):
-    if 'user_id' in request.session:
-        user_id = request.session['user_id']
-        user = Users.objects.get(id=user_id)
-        del request.session['user_id']
-        del request.session['role']
-        messages.success(request, 'You have been logged out!')
-        logger.info(f'User {user.email} logged out successfully.')
+@login_required
+def dashboard(request):
+    user_id = request.session.get('user_id')
+    role = request.session.get('role')
+    user = Users.objects.get(id=user_id)
+
+    projects = []  # Initialize projects as an empty list
+
+    context = {
+        'user_email': user.email,
+        'user_type': role
+    }
+
+    if role == 'individual':
+        contributions = Contribution.objects.filter(email=user.email)
+        total_contribution = sum(c.amount for c in contributions)
+        context['total_contribution'] = total_contribution
+        carbon_score = sum(c.amount for c in contributions) // 100
+        context['carbon_score'] = carbon_score
+        context['contributions'] = contributions
+        context['total_contribution'] = total_contribution
+
+    elif role == 'organization':
+        projects = OffsetProject.objects.filter(contact_email=user.email)
+        context['projects'] = projects
+        context['total_projects'] = len(projects)
+
+    return render(request, 'main/dashboard.html', context)
+
+def logout_view(request):
+    request.session.flush()  # Clear All Session Data
+    messages.success(request, "Logged out successfully!")
     return redirect('login')
+
+
 
 def toknowmore(request):
     return render(request, 'main/toknowmore.html')
@@ -170,7 +195,7 @@ def offset_projects(request):
 
 @login_required
 def list_project(request):
-    categories = OffsetProject.CATEGORY_CHOICES  # ✅ Fetch  project choices here
+    categories = OffsetProject.CATEGORY_CHOICES  # ✅ Fetch project choices here
     print("Session Data:", request.session.items())  # Debug Statement ✅
     
     if request.method == 'POST':
@@ -193,11 +218,11 @@ def list_project(request):
                 contact_email=contact_email
             )
             messages.success(request, 'Project Listed Successfully!')
-            return redirect('my_projects')
+            return redirect('marketplace')  # Redirect to marketplace instead of my_projects
         else:
             messages.error(request, 'Please fill all fields!')
-    return render(request, 'main/list_project.html', {'categories': categories}) 
-  
+    
+    return render(request, 'main/list_project.html', {'categories': categories})
 
 @login_required
 def contribute(request):
@@ -222,10 +247,13 @@ def contribute(request):
     return render(request, 'main/contribution.html', {'projects': projects})
 
 def marketplace(request):
-    return render(request, 'main/marketplace.html')
-
-def my_projects(request):
-    return render(request, 'main/my_projects.html')
+    category = request.GET.get('category')
+    if category:
+        projects = OffsetProject.objects.filter(category=category)
+    else:
+        projects = OffsetProject.objects.all()
+    categories = OffsetProject.CATEGORY_CHOICES
+    return render(request, 'main/marketplace.html', {'projects': projects, 'categories': categories})
 
 def contribution(request):
     projects = OffsetProject.objects.all()
@@ -247,12 +275,3 @@ def contribution(request):
         return redirect('marketplace')
 
     return render(request, 'main/contribution.html', {'projects': projects})
-
-def marketplace(request):
-    
-    category = request.GET.get('category')
-    if category:
-        projects = OffsetProject.objects.filter(category=category)
-    else:
-        projects = OffsetProject.objects.all()
-    return render(request, 'main/marketplace.html', {'projects': projects})
