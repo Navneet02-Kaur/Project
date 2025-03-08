@@ -13,17 +13,22 @@ body {
     line-height: 1.6;
 }
 
+#back img{
+    position: absolute;
+    padding: 20px 20px;
+    position:fixed;
+}
 
 header {
-    background-color: #336699;
+    background-color: #366841;
     color: white;
     text-align: center;
     padding: 15px;
     font-size: 24px;
 }
 .stock-news {
-    background-color: #222;
-    color: white;
+    background-color: #e2ffda;
+    color: rgb(4, 34, 0);
     padding: 10px;
     overflow: hidden;
     white-space: nowrap;
@@ -91,14 +96,14 @@ header {
 
 .news-sidebar a {
     text-decoration: none;
-    color: #336699;
+    color: #064400;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .news-sidebar a:hover {
     text-decoration: underline;
-    color: #224466;
+    color: #226646;
 }
 
 .news-main {

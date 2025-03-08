@@ -115,6 +115,8 @@ def user_update(request, id):
     return render(request, 'main/user_form.html', {'form': form})
 
 
+def tips(request):
+    return render(request, 'main/tips.html')
 
 def news(request):
     return render(request, 'main/news.html')

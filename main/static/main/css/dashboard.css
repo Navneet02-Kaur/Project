@@ -16,12 +16,12 @@ body.main-body {
     align-items: center;
     height: 100vh;
 }
-
 #back img{
     position: absolute;
     padding: 20px 20px;
     position:fixed;
 }
+
 
 .container {
     width: 80%;

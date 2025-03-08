@@ -561,14 +561,14 @@ footer {
         margin-top: 10px;
         padding: 10px 15px;
         font-size: 1rem;
-        background-color: #007bff;
+        background-color: #003314;
         color: white;
         text-decoration: none;
         border-radius: 6px;
         transition: background 0.3s ease-in-out;
       
         &:hover {
-            background-color: #0056b3;
+            background-color: #003f1c;
         }
     }
 }

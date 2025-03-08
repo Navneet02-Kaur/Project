@@ -1,13 +1,86 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sustainable Living Tips</title>
+    <link rel="stylesheet" href="{% static 'main/css/tips.css' %}">
 </head>
 <body>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus repellat, voluptatibus eius, minima in eveniet cum, eligendi quaerat dolore sit animi. Quam unde officia natus ullam harum enim quidem beatae!
+    <header class="header">
+        <h1>Sustainable Living Tips</h1>
+        <p>Discover eco-friendly ways to live better</p>
+    </header>
 
-    <a href="{% url 'index' %}">HOME</a>
+    <div class="filters">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Energy</button>
+        <button class="filter-btn">Water</button>
+        <button class="filter-btn">Waste</button>
+        <button class="filter-btn">Food</button>
+    </div>
+
+    <div class="pins-container">
+        <!-- Example pins - In Django you'll loop through your data -->
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800" alt="Solar Panels">
+            </div>
+            <div class="pin-content">
+                <h3>Solar Energy Tips</h3>
+                <p>Maximize your solar panel efficiency with these simple maintenance tips.</p>
+                <div class="pin-footer">
+                    <span class="category">Energy</span>
+                    <button class="save-btn">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800" alt="Zero Waste Home">
+            </div>
+            <div class="pin-content">
+                <h3>Zero Waste Living</h3>
+                <p>Transform your home into a zero-waste haven with these practical tips.</p>
+                <div class="pin-footer">
+                    <span class="category">Waste</span>
+                    <button class="save-btn">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?auto=format&fit=crop&w=800" alt="Garden">
+            </div>
+            <div class="pin-content">
+                <h3>Home Gardening</h3>
+                <p>Start your sustainable garden today with these beginner-friendly steps.</p>
+                <div class="pin-footer">
+                    <span class="category">Food</span>
+                    <button class="save-btn">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800" alt="Water Conservation">
+            </div>
+            <div class="pin-content">
+                <h3>Water Conservation</h3>
+                <p>Simple ways to reduce your daily water consumption.</p>
+                <div class="pin-footer">
+                    <span class="category">Water</span>
+                    <button class="save-btn">Save</button>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Add more pins as needed -->
+    </div>
 </body>
 </html>
