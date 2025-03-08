@@ -1,18 +1,27 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser
 
-class Users(AbstractUser):
+class Users(AbstractBaseUser):
     ROLE_CHOICES = [
         ('individual', 'Individual'),
         ('organization', 'Organization'),
     ]
+    
+    email = models.EmailField(unique=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='individual')
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)  # ✅ Fix: Now it updates automatically
+
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['role']
 
     class Meta:
         db_table = 'main_users'
 
     def __str__(self):
         return self.email
+
 
 class OffsetProject(models.Model):
     CATEGORY_CHOICES = [
@@ -27,6 +36,7 @@ class OffsetProject(models.Model):
         ('Community Solar Projects', 'Community Solar Projects'),
         ('Eco Brick Projects', 'Eco Brick Projects'),
     ]
+
     project_name = models.CharField(max_length=200)
     description = models.TextField()
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, default='Tree Plantation')
@@ -55,3 +65,4 @@ class Contribution(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.project.project_name}"
+

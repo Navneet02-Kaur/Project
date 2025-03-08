@@ -512,53 +512,74 @@ footer {
 .footer-bottom p {
     margin: 0;
 }
-
 /* News Section */
-.news-section {
-    position: absolute;
-    top: 73px; /* Move it downwards */
-    right: 20px;
-    width: 450px; /* Increase the width */
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.news-container {
-    padding: 10px;
-}
-
-.stock-news {
-    background-color: #f4f4f4;
-    padding: 5px;
-    border-bottom: 1px solid #ddd;
-}
 
 .carousel {
-    position: relative;
-    height: 480px; /* Increase the height */
-    overflow: hidden;
-}
-
-.carousel-item {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    text-align: center;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 350px;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  
+    .carousel-item {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        text-align: center;
+      
+        img {
+            width: 100%;
+            height: 60%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+      
+        p {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #333;
+        }
+    }
+  
+    .carousel-item.active {
+        display: block;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .news-btn {
+        margin-top: 10px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background 0.3s ease-in-out;
+      
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
 }
 
-.carousel-item img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.carousel-item p {
-    font-size: 14px;
-    color: #333;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

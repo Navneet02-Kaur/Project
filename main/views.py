@@ -6,8 +6,8 @@ from django.http import JsonResponse
 from .models import Users, OffsetProject, Contribution  
 from .forms import UserForm
 from django.contrib import messages
-from django.db.models import Sum
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.contrib.auth.hashers import make_password
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -22,23 +22,25 @@ def login_page(request):
     if 'user_id' in request.session:
         return redirect('dashboard')  # Redirect to dashboard if already logged in
 
-    next_url = request.GET.get('next', 'index')
+    next_url = request.GET.get('next', 'dashboard')  # ✅ Default to dashboard
+
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        try:
-            user = Users.objects.get(email=email, password=password)
+
+        user = Users.objects.filter(email=email).first()
+
+        if user and user.check_password(password):  # ✅ Fix: Check password correctly
             request.session['user_id'] = user.id
             request.session['role'] = user.role
             messages.success(request, 'Login Successful!')
-            logger.info(f'User {email} logged in successfully.')
-
             return redirect(next_url)
-        except Users.DoesNotExist:
-            messages.error(request, 'Invalid Email or Password')
-            logger.warning(f'Failed login attempt for email: {email}')
+
+        messages.error(request, 'Invalid Email or Password')
 
     return render(request, 'main/login.html', {'next': next_url})
+
+
 
 def signup(request):
     if request.method == 'POST':
@@ -47,54 +49,39 @@ def signup(request):
         role = request.POST.get('role')
         
         if not Users.objects.filter(email=email).exists():
-            Users.objects.create(email=email, password=password, role=role)
+            hashed_password = make_password(password)  # ✅ Fix: Hash password before saving
+            Users.objects.create(email=email, password=hashed_password, role=role)
             messages.success(request, 'Signup Successful! Please Login.')
             return redirect('login')
         else:
             messages.error(request, 'Email Already Exists')
             return redirect('signup')
 
-    return render(request, 'main/signup.html')
+    return render(request, 'main/login.html')
+
 
 @login_required
 def dashboard(request):
-    user = request.user
-    user_type = user.role
-    
+    user_id = request.session.get('user_id')
+    role = request.session.get('role')
+
+    if not user_id:
+        return redirect('login')  # ✅ Redirect if not logged in
+
+    user = Users.objects.get(id=user_id)
+
     context = {
         'user_email': user.email,
-        'user_type': user_type,
+        'user_type': role
     }
-
-    if user.role == 'individual':
-        contributions = Contribution.objects.filter(email=user.email)
-        total_amt_paid = contributions.aggregate(Sum('amount'))['amount__sum'] or 0
-        invested_projects = contributions.values_list('project__project_name', flat=True).distinct()
-        carbon_score = total_amt_paid // 100  # Simple logic (100 Rs = 1 Carbon Score)
-
-        context['carbon_score'] = carbon_score
-        context['total_amt_paid'] = total_amt_paid
-        context['invested_in'] = invested_projects
-        context['account_type'] = 'Individual'
-
-    elif user.role == 'organization':
-        projects = OffsetProject.objects.filter(contact_email=user.email)
-        total_projects = projects.count()
-        total_contribution = Contribution.objects.filter(project__in=projects).aggregate(Sum('amount'))['amount__sum'] or 0
-
-        context['total_projects'] = total_projects
-        context['total_contribution'] = total_contribution
-        context['projects_listed'] = projects
-        context['account_type'] = 'Organization'
 
     return render(request, 'main/dashboard.html', context)
 
-def logout_view(request):
-    logout(request)  # Logs out the user
-    return redirect('/')  # Redirect to homepage or any URL after logout
+
 
 def toknowmore(request):
     return render(request, 'main/toknowmore.html')
+
 
 def offset(request):
     return render(request, 'main/offset.html')
@@ -126,6 +113,11 @@ def user_update(request, id):
     else:
         form = UserForm(instance=user)
     return render(request, 'main/user_form.html', {'form': form})
+
+
+
+def news(request):
+    return render(request, 'main/news.html')
 
 @login_required
 def calculator(request):
@@ -244,7 +236,7 @@ def contribute(request):
             payment=payment
         )
         messages.success(request, "Thank you for your contribution!")
-        return redirect('marketplace')
+        return redirect('dashboard', {'projects': projects})
 
     return render(request, 'main/contribution.html', {'projects': projects})
 
@@ -277,3 +269,9 @@ def contribution(request):
         return redirect('marketplace')
 
     return render(request, 'main/contribution.html', {'projects': projects})
+
+def logout_view(request):
+    logout(request)  # Logs out user
+    request.session.flush()  # Clears session data
+    messages.success(request, "Logged out successfully!")
+    return redirect('login')  # Redirect to login

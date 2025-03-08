@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Section</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/news.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Latest News</h1>
+    </header>
+    
+    <!-- Stock Market News Marquee -->
+    <div class="stock-news">
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <span>Market Update: Dow Jones +1.5% | NASDAQ -0.7% | S&P 500 +0.3% | Global Oil Prices Rise | New Economic Policies Announced | Renewable Energy Stocks Surge | </span>
+                <span>Market Update: Dow Jones +1.5% | NASDAQ -0.7% | S&P 500 +0.3% | Global Oil Prices Rise | New Economic Policies Announced | Renewable Energy Stocks Surge | </span>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="news-container">
+        <!-- Sidebar with Quick Links -->
+        <aside class="news-sidebar">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="#breaking-news">Breaking News</a></li>
+                <li><a href="#climate-updates">Climate Updates</a></li>
+                <li><a href="#policy-changes">Policy Changes</a></li>
+                <li><a href="#innovation-tech">Innovation & Tech</a></li>
+                <li><a href="#featured-stories">Featured Stories</a></li>
+            </ul>
+        </aside>
+        
+        <!-- Main Content in the Center -->
+        <main class="news-main">
+            <article id="breaking-news">
+                <h2>New Carbon Policies Introduced</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt culpa alias quos beatae veniam similique ut voluptas minima sit libero laudantium voluptates doloremque esse, tempore eveniet modi recusandae blanditiis animi iste! Commodi eveniet quasi iusto culpa quia vero excepturi repudiandae illo autem possimus aliquam, tempore corrupti quidem odio maiores consequatur.</p>
+            </article>
+            <article id="climate-updates">
+                <h2>CLIMATE UPDATES </h2>
+                <p> ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, doloremque ex, nihil eaque placeat officia sequi at facilis sed commodi, corporis delectus error est eligendi expedita fugit magnam esse harum numquam obcaecati veritatis optio mollitia laborum velit? Omnis aut voluptates repellendus vero saepe doloribus? Quidem, voluptatibus. Accusantium facilis cumque quibusdam impedit dolor dicta aliquam animi fugit. Saepe expedita adipisci sed!</p>
+            </article>
+            <article id="policy-changes">
+                <h2>POLICY CHANGES</h2> 
+                <p>ipsum dolor sit amet consectetur adipisicing elit. Non deleniti autem similique nihil! Dolorum ab minus dolor delectus quae saepe cumque accusamus quidem blanditiis omnis molestiae praesentium rerum asperiores vero, ex ut sunt quod exercitationem totam. Accusantium blanditiis, nobis doloremque quisquam quo saepe eius veritatis. Voluptas sunt id ipsa laudantium unde dolore. Iste, sapiente delectus.</p>
+            </article>
+            <article id="innovation-tech">
+                <h2>innovation-tech</h2>
+                <p> ipsum dolor sit amet consectetur adipisicing elit. Non deleniti autem similique nihil! Dolorum ab minus dolor delectus quae saepe cumque accusamus quidem blanditiis omnis molestiae praesentium rerum asperiores vero, ex ut sunt quod exercitationem totam. Accusantium blanditiis, nobis doloremque quisquam quo saepe eius veritatis. Voluptas sunt id ipsa laudantium unde dolore. Iste, sapiente delectus.</p>
+            </article>
+            <article id="featured-stories">
+                <h2>FEATURED STORIES</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quo officia id. A maiores quam veniam hic nihil illum eum fuga eius sequi minima aut, dolorum distinctio quidem, ipsum sed velit explicabo iste harum quisquam laudantium magnam beatae fugiat quasi? Quod natus quam commodi sequi consequatur repellendus itaque. Rerum dignissimos earum, suscipit culpa aspernatur officiis reprehenderit, deleniti necessitatibus sapiente, voluptatem numquam natus temporibus tempore cum non! Est, porro nam nemo excepturi natus eveniet itaque incidunt deserunt eligendi.</p>
+            </article>
+        </main>
+        
+        <!-- Right Section with Extra Articles -->
+        <aside class="news-articles">
+            <h2>More Articles</h2>
+            <div class="article-item">
+                <h3>Electric Vehicles Adoption Rises</h3>
+                <p>EV sales have skyrocketed in recent years, with more countries pushing for sustainable transport...</p>
+            </div>
+            <div class="article-item">
+                <h3>Tech Giants Commit to Net Zero</h3>
+                <p>Major tech companies have announced plans to achieve carbon neutrality by 2030...</p>
+            </div>
+            <div class="article-item">
+                <h3>Deforestation Rates Decline</h3>
+                <p>Recent reports show a decline in deforestation rates, thanks to stronger policies...</p>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

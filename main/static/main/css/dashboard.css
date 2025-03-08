@@ -1,3 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+
 body.main-body {
     background-color: #f4f4f4;
     font-family: Arial, sans-serif;
@@ -7,6 +15,12 @@ body.main-body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+#back img{
+    position: absolute;
+    padding: 20px 20px;
+    position:fixed;
 }
 
 .container {

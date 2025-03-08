@@ -53,41 +53,31 @@
     </section>
 
     <!-- News Section -->
-    <section class="news-section">
-        <div class="news-container">
-            <div class="stock-news">
-                <marquee behavior="scroll" direction="left">
-                    Stock News: Company A +5%, Company B -3%, Company C +2%...
-                </marquee>
-            </div>
-            <div class="carousel">
-                <div class="carousel-item">
-                    <img src="{% static 'main/images/project1.jpg' %}" alt="Project 1">
-                    <p>Project 1: Description of the project...</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static 'main/images/project2.jpg' %}" alt="Project 2">
-                    <p>Project 2: Description of the project...</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static 'main/images/project3.jpg' %}" alt="Project 3">
-                    <p>Project 3: Description of the project...</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static 'main/images/project4.jpg' %}" alt="Project 4">
-                    <p>Project 4: Description of the project...</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static 'main/images/project5.jpg' %}" alt="Project 5">
-                    <p>Project 5: Description of the project...</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static 'main/images/project6.jpg' %}" alt="Project 6">
-                    <p>Project 6: Description of the project...</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="carousel">
+    <div class="carousel-item">
+        <img src="{% static 'main/images/breaking-news.jpg' %}" alt="Breaking News">
+        <p><strong>Breaking News:</strong> Latest updates on global policies and environmental issues.</p>
+    </div>
+    <div class="carousel-item">
+        <img src="{% static 'main/images/climate-updates.jpg' %}" alt="Climate Updates">
+        <p><strong>Climate Updates:</strong> Recent studies on climate change and sustainability.</p>
+    </div>
+    <div class="carousel-item">
+        <img src="{% static 'main/images/policy-changes.jpg' %}" alt="Policy Changes">
+        <p><strong>Policy Changes:</strong> Governments introducing new carbon emission rules.</p>
+    </div>
+    <div class="carousel-item">
+        <img src="{% static 'main/images/innovation-tech.jpg' %}" alt="Innovation & Tech">
+        <p><strong>Innovation & Tech:</strong> Breakthroughs in renewable energy and eco-friendly solutions.</p>
+    </div>
+    <div class="carousel-item">
+        <img src="{% static 'main/images/featured-stories.jpg' %}" alt="Featured Stories">
+        <p><strong>Featured Stories:</strong> Inspiring stories of people making a difference.</p>
+    </div>
+
+    <a href="{% url 'news' %}" class="news-btn">View All News</a>
+</div>
+
 
     <section class="About">
         <div id="about">
@@ -190,22 +180,19 @@
         });
 
         // Carousel functionality
-        $(document).ready(function () {
-            let currentIndex = 0;
-            const items = $('.carousel-item');
-            const itemCount = items.length;
+        document.addEventListener("DOMContentLoaded", function () {
+    let items = document.querySelectorAll(".carousel-item");
+    let index = 0;
 
-            function showNextItem() {
-                items.eq(currentIndex).fadeOut(500, function () {
-                    currentIndex = (currentIndex + 1) % itemCount;
-                    items.eq(currentIndex).fadeIn(500);
-                });
-            }
+    function showNextItem() {
+        items[index].classList.remove("active");
+        index = (index + 1) % items.length;
+        items[index].classList.add("active");
+    }
 
-            items.hide().eq(currentIndex).show();
-            setInterval(showNextItem, 3000);
-        });
-
+    items[0].classList.add("active"); // Show first item initially
+    setInterval(showNextItem, 3000); // Change every 3 seconds
+});
     </script>
 
 </body>
