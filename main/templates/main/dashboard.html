@@ -3,15 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard | Carbon Connect</title>
     <link rel="stylesheet" href="{% static 'main/css/dashboard.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body class="main-body">
 
@@ -21,98 +18,120 @@
         </a>
     </div>
 
-<div class="container">
-    <!-- Top Section -->
-    <div class="header">
-        <h2>Welcome, <span id="userEmail">{{ user_email }}</span>
-        </h2>
-        <p>Account Type: {{ user_type|title }}</p>
-    </div>
+    <div class="container">
+        <!-- Top Section -->
+        <div class="header">
+            <h2>Welcome, <span id="userEmail">{{ user_email }}</span></h2>
+            <p>Account Type: {{ user_type|title }}</p>
+        </div>
 
-    <div class="grid-container">
-        {% if user_type == 'Individual' %}
-        <div class="card">
-            <h3>Carbon Score</h3>
-            <p id="carbonScore">{{ carbon_score }} Points</p>
-        </div>
-        <div class="card">
-            <h3>Total Contribution</h3>
-            <p id="totalContribution">₹ {{ total_contribution }}</p>
-        </div>
-        {% endif %}
-    
-        {% if user_type == 'Organization' %}
-        <div class="card">
-            <h3>Total Projects Listed</h3>
-            <p>{{ projects|length }} Projects</p>
-        </div>
-        <div class="card">
-            <h3>Total Fund Raised</h3>
-            <p>₹ {{ total_contribution }}</p>
-        </div>
-        {% endif %}
-    </div>
-    
-    <!-- History Section -->
-    <div class="history-section">
-        <h3>Your Contribution History</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Project Name</th>
-                    <th>Amount Paid</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for contribution in contributions %}
-                <tr>
-                    <td>{{ contribution.project.project_name }}</td>
-                    <td>₹ {{ contribution.amount }}</td>
-                    <td>{{ contribution.created_dt }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="3">No Contributions Yet</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    
-        {% if user_type == 'Organization' %}
-        <h3>Your Listed Projects</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Project Name</th>
-                    <th>Target Amount</th>
-                    <th>Date Listed</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for project in projects %}
-                <tr>
-                    <td>{{ project.project_name }}</td>
-                    <td>₹ {{ project.target_amount }}</td>
-                    <td>{{ project.created_dt }}</td>
-                    
+        <div class="grid-container">
+            {% if user_type == 'individual' %}
+                <div class="card">
+                    <h3>Carbon Score</h3>
+                    <p id="carbonScore">{{ carbon_score }} Points</p>
+                </div>
+                <div class="card">
+                    <h3>Total Contribution</h3>
+                    <p id="totalContribution">₹ {{ total_contribution }}</p>
+                </div>
 
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="3">No Projects Listed</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
+                <h3>Your Contribution History</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Amount Paid</th>
+                            <th>Payment Mode</th>
+                            <th>Date Submitted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contribution in contributions %}
+                        <tr>
+                            <td>{{ contribution.project_name }}</td>
+                            <td>₹ {{ contribution.amount }}</td>
+                            <td>{{ contribution.payment_mode }}</td>
+                            <td>{{ contribution.date_submitted }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4">No Contributions Yet</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            {% if user_type == 'organization' %}
+                <div class="card">
+                    <h3>Total Projects Listed</h3>
+                    <p>{{ projects|length }} Projects</p>
+                </div>
+                <div class="card">
+                    <h3>Total Fund Raised</h3>
+                    <p>₹ {{ total_funds }}</p>
+                </div>
+
+                <h3>Your Listed Projects</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Target Amount</th>
+                            <th>Date Listed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for project in projects %}
+                        <tr>
+                            <td>{{ project.project_name }}</td>
+                            <td>₹ {{ project.target_amount }}</td>
+                            <td>{{ project.created_dt }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3">No Projects Listed</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <h3>User Contributions to Your Projects</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User Email</th>
+                            <th>Project Name</th>
+                            <th>Amount Contributed</th>
+                            <th>Payment Mode</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contribution in org_contributions %}
+                        <tr>
+                            <td>{{ contribution.user.email }}</td>
+                            <td>{{ contribution.project_name }}</td>
+                            <td>₹ {{ contribution.amount }}</td>
+                            <td>{{ contribution.payment_mode }}</td>
+                            <td>{{ contribution.date_submitted }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">No Contributions Yet</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+
+        <!-- Logout Button -->
+        <div class="logout">
+            <a href="/logout/" class="logout-btn">Logout</a>
+        </div>
     </div>
-    
-    <!-- Logout Button -->
-    <div class="logout">
-        <a href="/logout/" class="logout-btn">Logout</a>
-    </div>
-</div>
 
 </body>
 </html>

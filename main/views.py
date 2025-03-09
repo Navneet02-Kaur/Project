@@ -66,17 +66,42 @@ def dashboard(request):
     role = request.session.get('role')
 
     if not user_id:
-        return redirect('login')  # ✅ Redirect if not logged in
+        return redirect('login')  
 
     user = Users.objects.get(id=user_id)
 
+    # Default values
+    carbon_score = 0
+    total_contribution = 0
+    contributions = []
+    projects = []
+    total_funds = 0
+    org_contributions = []
+
+    if role == 'individual':
+        contributions = Contribution.objects.filter(user_id=user.id)  
+        total_contribution = sum(c.amount for c in contributions)  
+        carbon_score = user.profile.carbon_score if hasattr(user, 'profile') else 0  
+
+    elif role == 'organization':
+        projects = OffsetProject.objects.filter(contact_email=user.email)  
+        total_funds = sum(p.target_amount for p in projects)
+
+        # Fetch contributions for projects owned by this organization
+        org_contributions = Contribution.objects.filter(project_name__in=projects.values_list('project_name', flat=True))
+
     context = {
         'user_email': user.email,
-        'user_type': role
+        'user_type': role,
+        'carbon_score': carbon_score,
+        'contributions': contributions,
+        'total_contribution': total_contribution,
+        'projects': projects,
+        'total_funds': total_funds,
+        'org_contributions': org_contributions,
     }
 
     return render(request, 'main/dashboard.html', context)
-
 
 
 def toknowmore(request):
