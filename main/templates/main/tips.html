@@ -15,14 +15,13 @@
         <p>Discover eco-friendly ways to live better</p>
     </header>
 
-    <!-- <div class="filters">
-        <button class="filter-btn active">All</button>
-        <button class="filter-btn">Energy</button>
-        <button class="filter-btn">Water</button>
-        <button class="filter-btn">Waste</button>
-        <button class="filter-btn">Food</button>
-    </div> -->
-
+    <div id="back">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'main/images/arrow_back_ios_new_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg' %}"
+                alt="Back">
+        </a>
+    </div>
+    
     <div class="pins-container">
         <!-- Example pins - In Django you'll loop through your data -->
         <div class="pin">
@@ -74,7 +73,7 @@
                     and reducing waste also play a crucial role. 
                 </p>
                 <div class="pin-footer">
-                    <span class="category">Food</span>
+                    <span class="category">Carbon-Footprints</span>
                     <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
@@ -164,7 +163,7 @@
                     fuel, making it an eco-friendly alternative to traditional energy sources.
                 </p>
                 <div class="pin-footer">
-                    <span class="category">Farming</span>
+                    <span class="category">Green Future</span>
                     <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
@@ -176,13 +175,13 @@
                     alt="Water Conservation">
             </div>
             <div class="pin-content">
-                <h3>👕 12. How to Make Fashion More Sustainable</h3>
+                <h3>👕How to Make Fashion More Sustainable</h3>
                 <p>Fast fashion creates massive waste and pollution. Choosing high-quality, durable clothing and
                     shopping from ethical brands helps reduce waste. Donating or recycling old clothes instead of
                     throwing them away also minimizes environmental impact.
                 </p>
                 <div class="pin-footer">
-                    <span class="category">Farming</span>
+                    <span class="category">Fashion</span>
                     <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
@@ -200,7 +199,7 @@
                     seafood, and cleaning up beaches can help protect ocean ecosystems for future generations.
                 </p>
                 <div class="pin-footer">
-                    <span class="category">Farming</span>
+                    <span class="category">Water Body</span>
                     <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
@@ -218,7 +217,7 @@
                     also strengthens the economy while promoting sustainable agricultural practices.
                 </p>
                 <div class="pin-footer">
-                    <span class="category">Farming</span>
+                    <span class="category">Eating Habits</span>
                     <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
@@ -236,13 +235,44 @@
                     insulation reduce energy consumption and promote sustainability.
                 </p>
                 <div class="pin-footer">
-                    <span class="category">Farming</span>
+                    <span class="category">Green Home</span>
                     <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
         </div>
-        <!-- Add more pins as needed -->
+        
     </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>&copy; 2025 Carbon Connect. All rights reserved.</p>
+                <p>Carbon Connect is dedicated to promoting sustainability by facilitating <br> carbon offset trading and investment. <br> 
+                We strive to create a greener future by connecting individuals and organizations with impactful offset projects.</p>
+            </div>
+            <div class="footer-right">
+                <p class="footer-title">Creator's Contact</p>
+                <p>Email: <a href="mailto:navneetkaurbiji@gmail.com">navneetkaurbiji@gmail.com</a></p>
+                <p>Socials: <a href="https://www.instagram.com/navneet.biji" target="_blank">navneet.biji</a></p>
+            </div>
+        </div>
+        <div class="footer-faq">
+            <details>
+                <summary>FAQs</summary>
+                <p><strong>Q:</strong> What is Carbon Connect?</p>
+                <p><strong>A:</strong> Carbon Connect is a platform for carbon offset trading and investment.</p>
+                <p><strong>Q:</strong> How can I list an offset project?</p>
+                <p><strong>A:</strong> Companies can register and submit their projects through the List Project page.</p>
+                <p><strong>Q:</strong> Who can buy carbon credits on this platform?</p>
+                <p><strong>A:</strong> Both individuals and organizations can purchase carbon credits to offset their emissions.</p>
+                <p><strong>Q:</strong> Is there a fee for listing a project?</p>
+                <p><strong>A:</strong> Currently, listing a project is free, but there may be transaction fees for completed trades.</p>
+                <p><strong>Q:</strong> How can I contact support?</p>
+                <p><strong>A:</strong> You can reach out via the email provided in the contact section.</p>
+            </details>
+        </div>
+    </footer>
+    
 </body>
 
 </html>

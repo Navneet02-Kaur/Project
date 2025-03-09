@@ -47,9 +47,9 @@ body {
 /* Container styling */
 .container {
     display: flex;
-    width: 1000px;
+    width: 700px; /* Adjusted width */
     max-width: 90%;
-    min-height: 600px;
+    min-height: 400px; /* Adjusted height */
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 51, 8, 0.2);

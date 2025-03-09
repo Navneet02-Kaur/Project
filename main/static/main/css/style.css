@@ -220,7 +220,7 @@ nav li:first-child {
     text-align: center;
     font-size: 5rem;
     margin-top: 0;
-    color: rgb(0, 34, 0);
+    color: rgb(0, 48, 0);
 }
 
 .about-container {
@@ -233,7 +233,7 @@ nav li:first-child {
 }
 
 .about-post {
-    color: rgb(168, 255, 173);
+    color: rgb(127, 204, 131);
     width: 250px;
     background-color: rgb(6, 44, 0);
     border-radius: 06px;
@@ -259,17 +259,17 @@ nav li:first-child {
 
 .about-info h3 {
     font-size: 2.4rem;
-    color: #ffffff;
+    color: #d1ffe0;
 }
 .about-info p{
-    color: #e2e2e2;
+    color: #5ea874;
 }
 
 .about-info .btn {
     background-color: transparent;
     margin-top: 10px;
-    border: 1px solid rgb(255, 255, 255);
-    color: rgb(255, 255, 255);
+    border: 1px solid rgb(197, 243, 195);
+    color: rgb(191, 243, 196);
     padding: 10px 25px;
     font-size: 18px;
     border-radius: 5px;
@@ -305,8 +305,8 @@ nav li:first-child {
 .know-more-btn {
     display: inline-block;
     padding: 10px 15px;
-    border: 2px solid white;
-    color: white;
+    border: 1px solid rgb(195, 255, 181);
+    color: rgb(211, 230, 209);
     background: transparent;
     text-align: center;
     border-radius: 5px;
@@ -315,7 +315,7 @@ nav li:first-child {
 }
 
 .know-more-btn:hover {
-    background: white;
+    background: rgb(159, 255, 167);
     color: black;
 } 
 
@@ -436,82 +436,63 @@ p {
     color: #ffffff;
 }
 
-/* Footer Styling */
+/* footer styles */
 footer {
     background-color: #1a1a1a;
-    color: rgb(170, 255, 170);
-    padding: 40px 20px;
-    text-align: center;
-    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
 .footer-container {
     display: flex;
+    background-color: #292929;
     justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 20px;
 }
 
-.contact-info,
-.email-signup {
-    flex: 1;
+.footer-left p {
+    font-size: 14px;
+    opacity: 0.8;
 }
 
-.contact-info h3,
-.email-signup h3 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-    color: rgb(178, 255, 168);
+.footer-right {
+    text-align: right;
 }
 
-.contact-info p,
-.email-signup p {
-    font-size: 1rem;
-    color: rgb(181, 255, 181);
+.footer-title {
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.contact-info a {
-    color: rgb(255, 255, 255);
+.footer-right a {
+    color: #bdffcd;
     text-decoration: none;
 }
 
-.contact-info a:hover {
-    text-decoration: underline;
+.footer-faq {
+    background-color: #292929;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.email-input {
-    padding: 10px;
-    width: 100%;
-    font-size: 1rem;
-    margin-bottom: 10px;
-    border: 2px solid rgb(255, 255, 255);
-    background-color: #333;
-    color: white;
-}
-
-.email-btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: rgb(0, 0, 0);
-    color: white;
-    border: none;
+.footer-faq details {
+    color: rgb(228, 226, 226);
     cursor: pointer;
-    width: 100%;
 }
 
-.email-btn:hover {
-    background-color: rgb(10, 61, 0);
+.footer-faq summary {
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.footer-bottom {
-    margin-top: 30px;
-    font-size: 1rem;
-    color: rgb(181, 255, 181);
-}
-
-.footer-bottom p {
-    margin: 0;
-}
 /* News Section */
 
 .carousel {
