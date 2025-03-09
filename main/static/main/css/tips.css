@@ -1,184 +1,99 @@
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "K2D", serif;
-}
-
+/* General Styles */
 body {
-    font-family: "K2D", serif;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    line-height: 1.6;
-}
-/* Base Styles */
-:root {
-    --primary-color: #2ecc71;
-    --secondary-color: #27ae60;
-    --background-color: #f5f8fa;
-    --text-color: #2c3e50;
-    --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    line-height: 1.6;
-}
-
-/* Header Styles */
+/* Header Styling */
 .header {
     text-align: center;
-    padding: 2rem 1rem;
-    margin-bottom: 2rem;
-    background-color: white;
-    box-shadow: var(--shadow);
+    padding: 20px;
+    background-color: #c8ffca;
+    color: rgb(0, 24, 7);
 }
 
 .header h1 {
     font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-
-
+    margin: 0;
 }
 
 .header p {
-    color: #666;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    margin-top: 5px;
 }
 
-/* Filters */
-.filters {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding: 0 1rem;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    padding: 0.5rem 1.5rem;
-    border: 2px solid var(--primary-color);
-    border-radius: 25px;
-    background: transparent;
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-/* Pinterest-style Grid */
+/* Pinterest-Style Grid Layout */
 .pins-container {
-    column-count: 4;
-    column-gap: 1rem;
-    padding: 0 1rem;
-    max-width: 1600px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
-@media (max-width: 1200px) {
-    .pins-container {
-        column-count: 3;
-    }
-}
-
-@media (max-width: 900px) {
-    .pins-container {
-        column-count: 2;
-    }
-}
-
-@media (max-width: 600px) {
-    .pins-container {
-        column-count: 1;
-    }
-}
-
-/* Pin Card Styles */
+/* Individual Card (Pin) Styling */
 .pin {
-    break-inside: avoid;
-    background-color: white;
-    border-radius: 16px;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow);
+    background: white;
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
 .pin:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
 }
 
-.pin-image {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
+/* Image Styling */
 .pin-image img {
     width: 100%;
-    display: block;
+    height: 200px;
     object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
+/* Content Styling */
 .pin-content {
-    padding: 1rem;
+    padding: 15px;
 }
 
 .pin-content h3 {
     font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-color);
+    color: #333;
+    margin-bottom: 8px;
 }
 
 .pin-content p {
     font-size: 0.9rem;
     color: #666;
-    margin-bottom: 1rem;
+    line-height: 1.4;
 }
 
+/* Category Tag */
 .pin-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.category {
-    background-color: #e8f5e9;
-    color: var(--primary-color);
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
+    padding: 10px 15px;
+    background: #e0e0e0;
     font-size: 0.8rem;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
-.save-btn {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pins-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 }
 
-.save-btn:hover {
-    background-color: var(--secondary-color);
+@media (max-width: 480px) {
+    .pins-container {
+        grid-template-columns: 1fr;
+    }
 }

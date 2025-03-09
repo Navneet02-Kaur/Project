@@ -11,6 +11,7 @@ class Users(AbstractBaseUser):
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='individual')
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)  # ✅ Fix: Now it updates automatically
+    carbon_score = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
 
 
     USERNAME_FIELD = 'email'
@@ -58,7 +59,7 @@ class Contribution(models.Model):
     project_name = models.CharField(max_length=255)  # ✅ Change `project` → `project_name`
     name = models.CharField(max_length=255)
     email = models.EmailField()
-    payment = models.CharField(max_length=255)
+    payment_mode = models.CharField(max_length=255, default='UPI')
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:

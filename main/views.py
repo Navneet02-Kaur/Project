@@ -8,6 +8,8 @@ from .forms import UserForm
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.hashers import make_password
+from django.utils import timezone  # ✅ Fix: Import timezone
+
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -69,6 +71,8 @@ def dashboard(request):
         return redirect('login')  
 
     user = Users.objects.get(id=user_id)
+
+    carbon_score = request.session.get('carbon_score', "Not Calculated Yet")
 
     # Default values
     carbon_score = 0
@@ -178,7 +182,11 @@ def calculator(request):
                 energy_emission + transport_emission + waste_emission +
                 food_emission + water_emission + goods_emission +
                 renewable_emission + lifestyle_emission
-            ) / 1000
+            )/1000
+            carbon_score = round(total_emission, 2)
+
+            # ✅ Store Carbon Score in the session
+            request.session['carbon_score'] = carbon_score
 
             if total_emission <= 2:
                  remark = "Excellent 🌿 - You are an Eco Hero!"
@@ -248,28 +256,29 @@ def list_project(request):
 @login_required
 def contribute(request):
     projects = OffsetProject.objects.all()
-    user_id = request.session.get('user_id')  # Get user ID from session
+    user_id = request.session.get('user_id')
 
     if not user_id:
         messages.error(request, "You must be logged in to contribute.")
         return redirect('login')
 
-    user = Users.objects.get(id=user_id)  # Fetch user instance
+    user = Users.objects.get(id=user_id)
 
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
         project_id = request.POST['project']
         amount = request.POST['amount']
-        payment_mode = request.POST['payment']
+        payment_mode = request.POST.get('payment_mode', 'UPI')
 
         project = OffsetProject.objects.get(id=project_id)
 
         Contribution.objects.create(
-            user=user,  # Assign the authenticated user
+            user=user,
             project_name=project.project_name,
             amount=amount,
-            payment=payment_mode
+            payment_mode=payment_mode,
+            date=timezone.now()  # ✅ FIXED: Now timezone is properly used
         )
         messages.success(request, "Thank you for your contribution!")
         return redirect('marketplace')

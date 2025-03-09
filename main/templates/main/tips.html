@@ -1,86 +1,248 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sustainable Living Tips</title>
     <link rel="stylesheet" href="{% static 'main/css/tips.css' %}">
 </head>
+
 <body>
     <header class="header">
         <h1>Sustainable Living Tips</h1>
         <p>Discover eco-friendly ways to live better</p>
     </header>
 
-    <div class="filters">
+    <!-- <div class="filters">
         <button class="filter-btn active">All</button>
         <button class="filter-btn">Energy</button>
         <button class="filter-btn">Water</button>
         <button class="filter-btn">Waste</button>
         <button class="filter-btn">Food</button>
-    </div>
+    </div> -->
 
     <div class="pins-container">
         <!-- Example pins - In Django you'll loop through your data -->
         <div class="pin">
             <div class="pin-image">
-                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800" alt="Solar Panels">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800"
+                    alt="Solar Panels">
             </div>
             <div class="pin-content">
-                <h3>Solar Energy Tips</h3>
-                <p>Maximize your solar panel efficiency with these simple maintenance tips.</p>
+                <h3>🌱How to Save Energy at Home & Work</h3>
+                <p>Energy conservation helps reduce electricity bills and lower carbon footprints. Switching to LED
+                    bulbs cuts energy use by 75%, and unplugging devices prevents energy waste. Smart thermostats and
+                    motion-sensor lights in offices optimize energy use. Running full loads in washing machines and
+                    dishwashers also saves electricity. These small changes can reduce energy consumption by up to 30%.
+                </p>
                 <div class="pin-footer">
                     <span class="category">Energy</span>
-                    <button class="save-btn">Save</button>
+                    <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
         </div>
 
         <div class="pin">
             <div class="pin-image">
-                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800" alt="Zero Waste Home">
+                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800"
+                    alt="Zero Waste Home">
             </div>
             <div class="pin-content">
-                <h3>Zero Waste Living</h3>
-                <p>Transform your home into a zero-waste haven with these practical tips.</p>
+                <h3>☀️Why You Should Switch to Solar Energy</h3>
+                <p>Solar energy is a clean, renewable source that reduces electricity costs and carbon emissions. Solar
+                    panels require minimal maintenance and last up to 30 years. Many governments offer incentives,
+                    making the switch even more affordable. By adopting solar power, individuals and businesses can
+                    contribute to a more sustainable future.</p>
                 <div class="pin-footer">
-                    <span class="category">Waste</span>
-                    <button class="save-btn">Save</button>
+                    <span class="category">Solar</span>
+                    <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
         </div>
 
         <div class="pin">
             <div class="pin-image">
-                <img src="https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?auto=format&fit=crop&w=800" alt="Garden">
+                <img src="https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?auto=format&fit=crop&w=800"
+                    alt="Garden">
             </div>
             <div class="pin-content">
-                <h3>Home Gardening</h3>
-                <p>Start your sustainable garden today with these beginner-friendly steps.</p>
+                <h3>🌍The Importance of Reducing Your Carbon Footprint</h3>
+                <p>Reducing your carbon footprint helps combat climate change. Choosing public transport or cycling cuts
+                    emissions from cars, and eating less meat lowers environmental impact. Supporting sustainable brands
+                    and reducing waste also play a crucial role. 
+                </p>
                 <div class="pin-footer">
                     <span class="category">Food</span>
-                    <button class="save-btn">Save</button>
+                    <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
         </div>
 
         <div class="pin">
             <div class="pin-image">
-                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800" alt="Water Conservation">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800"
+                    alt="Water Conservation">
             </div>
             <div class="pin-content">
-                <h3>Water Conservation</h3>
-                <p>Simple ways to reduce your daily water consumption.</p>
+                <h3>🚰How to Save Water in Daily Life</h3>
+                <p>Freshwater is limited, making conservation essential. Fixing leaks, using low-flow faucets, and
+                    turning off taps while brushing your teeth can save thousands of gallons annually. Collecting
+                    rainwater for gardening and limiting excessive water use in daily activities also help in
+                    preservation.</p>
                 <div class="pin-footer">
                     <span class="category">Water</span>
-                    <button class="save-btn">Save</button>`
+                    <!-- <button class="save-btn">Save</button> -->
                 </div>
             </div>
-            
         </div>
 
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800"
+                    alt="Water Conservation">
+            </div>
+            <div class="pin-content">
+                <h3>♻️Why Recycling Matters More Than Ever</h3>
+                <p>Recycling reduces landfill waste and conserves resources. Separating plastics, glass, and paper
+                    ensures proper recycling. Avoiding single-use plastics and upcycling old items further minimizes
+                    waste. By recycling correctly, each person can prevent tons of waste from polluting the environment.
+                </p>
+                <div class="pin-footer">
+                    <span class="category">Re-Cycling</span>
+                    <!-- <button class="save-btn">Save</button> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800"
+                    alt="Water Conservation">
+            </div>
+            <div class="pin-content">
+                <h3>🚲How Using Public Transport Helps the Environment</h3>
+                <p>Public transport significantly reduces carbon emissions by replacing individual car trips. Buses and
+                    trains carry more passengers using less fuel, cutting overall pollution. Carpooling also decreases
+                    traffic congestion and fuel consumption, making cities cleaner and more efficient.
+                </p>
+                <div class="pin-footer">
+                    <span class="category">Transportation</span>
+                    <!-- <button class="save-btn">Save</button> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800"
+                    alt="Water Conservation">
+            </div>
+            <div class="pin-content">
+                <h3>🌾Sustainable Farming: Why It’s the Future of Food</h3>
+                <p>Agriculture uses vast resources, but sustainable practices can help. Crop rotation maintains soil
+                    fertility, and organic farming reduces harmful chemicals. Drip irrigation conserves water, ensuring
+                    efficient use of resources. Choosing locally grown produce supports sustainability efforts.
+                </p>
+                <div class="pin-footer">
+                    <span class="category">Farming</span>
+                    <!-- <button class="save-btn">Save</button> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800"
+                    alt="Water Conservation">
+            </div>
+            <div class="pin-content">
+                <h3>🌿The Future of Green Energy: Wind, Hydropower & Biomass</h3>
+                <p>Renewable energy sources like wind and hydropower reduce dependence on fossil fuels. Wind energy is
+                    efficient, while hydropower provides stable electricity. Biomass energy converts organic waste into
+                    fuel, making it an eco-friendly alternative to traditional energy sources.
+                </p>
+                <div class="pin-footer">
+                    <span class="category">Farming</span>
+                    <!-- <button class="save-btn">Save</button> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800"
+                    alt="Water Conservation">
+            </div>
+            <div class="pin-content">
+                <h3>👕 12. How to Make Fashion More Sustainable</h3>
+                <p>Fast fashion creates massive waste and pollution. Choosing high-quality, durable clothing and
+                    shopping from ethical brands helps reduce waste. Donating or recycling old clothes instead of
+                    throwing them away also minimizes environmental impact.
+                </p>
+                <div class="pin-footer">
+                    <span class="category">Farming</span>
+                    <!-- <button class="save-btn">Save</button> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800"
+                    alt="Water Conservation">
+            </div>
+            <div class="pin-content">
+                <h3>🌊Why Protecting Oceans is Important</h3>
+                <p>Oceans produce over 50% of the world’s oxygen and regulate climate. However, pollution and
+                    overfishing are destroying marine life. Reducing plastic waste, supporting sustainable
+                    seafood, and cleaning up beaches can help protect ocean ecosystems for future generations.
+                </p>
+                <div class="pin-footer">
+                    <span class="category">Farming</span>
+                    <!-- <button class="save-btn">Save</button> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800"
+                    alt="Water Conservation">
+            </div>
+            <div class="pin-content">
+                <h3>🌾Why Eating Local & Seasonal Food is Sustainable</h3>
+                <p>Locally grown food requires less transportation, reducing carbon emissions. Seasonal
+                    produce is fresher, healthier, and requires fewer chemicals. Supporting local farmers
+                    also strengthens the economy while promoting sustainable agricultural practices.
+                </p>
+                <div class="pin-footer">
+                    <span class="category">Farming</span>
+                    <!-- <button class="save-btn">Save</button> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="pin">
+            <div class="pin-image">
+                <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800"
+                    alt="Water Conservation">
+            </div>
+            <div class="pin-content">
+                <h3>🏠How Green Buildings Can Save the Planet</h3>
+                <p>Green buildings use energy-efficient materials and renewable energy sources like
+                    solar power. Features like natural lighting, rainwater harvesting, and proper
+                    insulation reduce energy consumption and promote sustainability.
+                </p>
+                <div class="pin-footer">
+                    <span class="category">Farming</span>
+                    <!-- <button class="save-btn">Save</button> -->
+                </div>
+            </div>
+        </div>
         <!-- Add more pins as needed -->
     </div>
 </body>
+
 </html>
