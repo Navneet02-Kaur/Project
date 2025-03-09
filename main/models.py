@@ -65,4 +65,3 @@ class Contribution(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.project.project_name}"
-

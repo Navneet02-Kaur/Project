@@ -59,7 +59,6 @@ def signup(request):
 
     return render(request, 'main/login.html')
 
-
 @login_required
 def dashboard(request):
     user_id = request.session.get('user_id')
@@ -68,7 +67,10 @@ def dashboard(request):
     if not user_id:
         return redirect('login')  # ✅ Redirect if not logged in
 
-    user = Users.objects.get(id=user_id)
+    try:
+        user = Users.objects.get(id=user_id)
+    except Users.DoesNotExist:
+        return redirect('login')  # ✅ Redirect if user doesn't exist
 
     context = {
         'user_email': user.email,
@@ -76,8 +78,6 @@ def dashboard(request):
     }
 
     return render(request, 'main/dashboard.html', context)
-
-
 
 def toknowmore(request):
     return render(request, 'main/toknowmore.html')

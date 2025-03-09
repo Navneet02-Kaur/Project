@@ -160,4 +160,6 @@ LOGGING = {
 
 AUTH_USER_MODEL = 'main.Users'
 
+
+
 LOGIN_URL = '/login/'
