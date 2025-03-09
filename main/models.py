@@ -53,12 +53,13 @@ class OffsetProject(models.Model):
         return self.project_name
 
 class Contribution(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    project = models.ForeignKey(OffsetProject, on_delete=models.CASCADE)
+    user = models.ForeignKey('Users', on_delete=models.CASCADE)  # Ensure Users model exists
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment = models.CharField(max_length=100)
-    created_dt = models.DateTimeField(auto_now_add=True)
+    project_name = models.CharField(max_length=255)  # ✅ Change `project` → `project_name`
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    payment = models.CharField(max_length=255)
+    date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'contribution'

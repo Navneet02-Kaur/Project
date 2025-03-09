@@ -59,6 +59,7 @@ def signup(request):
 
     return render(request, 'main/login.html')
 
+
 @login_required
 def dashboard(request):
     user_id = request.session.get('user_id')
@@ -67,10 +68,7 @@ def dashboard(request):
     if not user_id:
         return redirect('login')  # ✅ Redirect if not logged in
 
-    try:
-        user = Users.objects.get(id=user_id)
-    except Users.DoesNotExist:
-        return redirect('login')  # ✅ Redirect if user doesn't exist
+    user = Users.objects.get(id=user_id)
 
     context = {
         'user_email': user.email,
@@ -78,6 +76,8 @@ def dashboard(request):
     }
 
     return render(request, 'main/dashboard.html', context)
+
+
 
 def toknowmore(request):
     return render(request, 'main/toknowmore.html')
@@ -223,24 +223,34 @@ def list_project(request):
 @login_required
 def contribute(request):
     projects = OffsetProject.objects.all()
+    user_id = request.session.get('user_id')  # Get user ID from session
+
+    if not user_id:
+        messages.error(request, "You must be logged in to contribute.")
+        return redirect('login')
+
+    user = Users.objects.get(id=user_id)  # Fetch user instance
+
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
-        project = OffsetProject.objects.get(id=request.POST['project'])
+        project_id = request.POST['project']
         amount = request.POST['amount']
-        payment = request.POST['payment']
+        payment_mode = request.POST['payment']
+
+        project = OffsetProject.objects.get(id=project_id)
 
         Contribution.objects.create(
-            name=name,
-            email=email,
-            project=project,
+            user=user,  # Assign the authenticated user
+            project_name=project.project_name,
             amount=amount,
-            payment=payment
+            payment=payment_mode
         )
         messages.success(request, "Thank you for your contribution!")
-        return redirect('dashboard', {'projects': projects})
+        return redirect('marketplace')
 
     return render(request, 'main/contribution.html', {'projects': projects})
+
 
 def marketplace(request):
     category = request.GET.get('category')
