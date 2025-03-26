@@ -8,7 +8,7 @@ from .forms import UserForm
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.hashers import make_password
-from django.utils import timezone  # ✅ Fix: Import timezone
+from django.utils import timezone  #Import timezone
 
 
 # Get an instance of a logger
@@ -72,10 +72,17 @@ def dashboard(request):
 
     user = Users.objects.get(id=user_id)
 
+    # carbon_score = request.session.get('carbon_score', "Not Calculated Yet")
+
     carbon_score = request.session.get('carbon_score', "Not Calculated Yet")
 
+    # print(f"DEBUG: Carbon Score retrieved in dashboard -> {carbon_score}")
+
+    print("🟢 Carbon Score from Session:", carbon_score)
+
+
     # Default values
-    carbon_score = 0
+    carbon_score = []
     total_contribution = 0
     contributions = []
     projects = []

@@ -158,6 +158,11 @@ LOGGING = {
     },
 }
 
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Store session data in the database
+SESSION_COOKIE_AGE = 86400  # Session expires in 1 day
+SESSION_SAVE_EVERY_REQUEST = True  # Save session after every request
+
+
 AUTH_USER_MODEL = 'main.Users'
 
 

@@ -26,7 +26,13 @@
             {% if user_type == 'individual' %}
                 <div class="card">
                     <h3>Carbon Score</h3>
-                    <p id="carbonScore">{{ carbon_score }} Points</p>
+                    <p id="carbonScore">
+                        {% if carbon_score == "Not Calculated Yet" or carbon_score is None %}
+                        Not Calculated Yet
+                    {% else %}
+                        {{ carbon_score }} Points
+                    {% endif %}
+                    </p>
                 </div>
                 <div class="card">
                     <h3>Total Contribution</h3>
