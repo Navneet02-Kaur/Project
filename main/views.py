@@ -82,7 +82,7 @@ def dashboard(request):
 
 
     # Default values
-    carbon_score = []
+    carbon_score = None
     total_contribution = 0
     contributions = []
     projects = []
@@ -92,7 +92,8 @@ def dashboard(request):
     if role == 'individual':
         contributions = Contribution.objects.filter(user_id=user.id)  
         total_contribution = sum(c.amount for c in contributions)  
-        carbon_score = user.profile.carbon_score if hasattr(user, 'profile') else 0  
+        # carbon_score = user.profile.carbon_score if hasattr(user, 'profile') else 0
+        carbon_score =  user.carbon_score  
 
     elif role == 'organization':
         projects = OffsetProject.objects.filter(contact_email=user.email)  
@@ -163,6 +164,7 @@ def calculator(request):
         return render(request, 'main/calculator.html')  # Correct template path
     elif request.method == "POST":
         try:
+        
             # Collect data from form
             electricity = int(request.POST.get("electricity", 0))
             yearly_driving = int(request.POST.get("yearlyDriving", 0))
@@ -191,6 +193,8 @@ def calculator(request):
                 renewable_emission + lifestyle_emission
             )/1000
             carbon_score = round(total_emission, 2)
+
+            
 
             # ✅ Store Carbon Score in the session
             request.session['carbon_score'] = carbon_score

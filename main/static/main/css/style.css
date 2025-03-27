@@ -243,14 +243,9 @@ nav li:first-child {
 }
 
 .about-post:hover {
-    /* background: url("../images/sustip.jpg"); */
-    /* opacity: 0.5; */
-    /* background-size: cover; */
     background-position: 10%;
     border-radius: 10px;
-    transform: scale(1.05);
-   
-    
+    transform: scale(1.05);  
 }
 
 .about-info {
@@ -288,7 +283,7 @@ nav li:first-child {
 
 
 }
-/* 
+ 
 /* General styles for nav links */
 .nav-link {
     color: white;
@@ -494,7 +489,6 @@ footer {
 }
 
 /* News Section */
-
 .carousel {
     position: absolute;
     right: 2rem;
